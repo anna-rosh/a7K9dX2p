@@ -48,7 +48,7 @@ export const useComments = () => {
     };
   }, []);
 
-  const addComment = useCallback(async (input: CommentInput, user: User) => {
+  const addComment = useCallback(async (input: CommentInput, user: User): Promise<void> => {
     try {
       await commentService.createComment(input, user);
     } catch (err) {
@@ -56,7 +56,7 @@ export const useComments = () => {
     }
   }, []);
 
-  const removeComment = useCallback(async (id: string) => {
+  const removeComment = useCallback(async (id: string): Promise<void> => {
     try {
       await commentService.deleteComment(id);
     } catch (err) {
@@ -64,7 +64,7 @@ export const useComments = () => {
     }
   }, []);
 
-  const addReply = useCallback(async (reply: CommentInput, user: User) => {
+  const addReply = useCallback(async (reply: CommentInput, user: User): Promise<void> => {
     try {
       await commentService.createComment(reply, user);
     } catch (err) {

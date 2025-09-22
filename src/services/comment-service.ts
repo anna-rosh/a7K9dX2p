@@ -3,6 +3,7 @@ import { getDb, type CommentCollection } from '../database/database';
 import { RXDB_COLLECTION_NAME } from '../constants';
 import type { Comment, CommentBase, CommentInput, User } from '../types';
 import type { RxDocument } from 'rxdb';
+import type { Observable } from 'rxjs';
 
 class CommentService {
   private collection: CommentCollection | null = null;
@@ -102,7 +103,7 @@ class CommentService {
     return this.toCommentObj(deletedCommentDoc);
   }
 
-  async getCommentsObservable() {
+  async getCommentsObservable(): Promise<Observable<RxDocument<Comment>[]>> {
     const collection = await this.getCollection();
     return collection.find().sort({ createdAt: 'desc' }).$;
   }
